@@ -17,7 +17,7 @@ const io = socketIo(server, {
 let players = {};
 
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
+  console.log(`User connected: ${socket.id}`);
 
   // When a player joins the lobby, store their info (for demo, use socket id as name)
   socket.on('join lobby', (playerData) => {
@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001; // use a port different from React if needed
+const PORT = process.env.PORT || 3000; // use a port different from React if needed
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

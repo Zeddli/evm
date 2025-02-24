@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ethers } from "ethers";
+import { BrowserProvider } from "ethers";
 
 function WalletConnect() {
   const [account, setAccount] = useState(null);
@@ -7,13 +7,29 @@ function WalletConnect() {
   async function connectWallet() {
     if (window.ethereum) {
       try {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setAccount(accounts[0]);
-      } catch (err) {
-        console.error("Error connecting wallet:", err);
+        // Request account access from MetaMask
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        
+        // Initialize provider and disable ENS lookups if necessary
+        const provider = new BrowserProvider(window.ethereum);
+        provider.getEnsAddress = async () => null;
+        provider.getResolver = async () => null;
+        provider.resolveName = async (name) => name;
+  
+        const signer = await provider.getSigner();
+        // Proceed with your initialization logic (e.g., setting state)
+        console.log("Wallet connected:", await signer.getAddress());
+      } catch (error) {
+        // Handle rejection (error code 4001) or any other error
+        if (error.code === 4001) {
+          // User rejected the connection
+          alert("Connection request was rejected. Please try again if you wish to connect your wallet.");
+        } else {
+          console.error("Error connecting wallet:", error);
+        }
       }
     } else {
-      alert("Please install MetaMask!");
+      alert("MetaMask is not installed. Please install it to connect your wallet.");
     }
   }
 

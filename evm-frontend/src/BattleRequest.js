@@ -5,7 +5,7 @@ import { BrowserProvider, ethers } from 'ethers';
 import BattleGameABI from './BattleGameABI.json';
 
 // Replace with your deployed contract address
-const contractAddress = "0xD58d513f4fD304Ad85296C6AB53A07C82c20a4Cf";
+const contractAddress = "0x9Ee89d5882cEa559f5DE3068Ce5C1906a047EEe2";
 const socket = io('http://localhost:3000');
 
 function BattleRequest() {
