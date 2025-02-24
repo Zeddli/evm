@@ -7,7 +7,7 @@ import BattleGameABI from './BattleGameABI.json';
 // Replace with your deployed contract address
 const contractAddress = "0x9Ee89d5882cEa559f5DE3068Ce5C1906a047EEe2";
 // Create a separate socket for battle events/score updates
-const battleSocket = io('http://localhost:3001');
+const battleSocket = io('http://localhost:3000');
 
 function BattleGameComponent() {
   const [contract, setContract] = useState(null);
