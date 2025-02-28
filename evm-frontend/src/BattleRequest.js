@@ -16,16 +16,37 @@ function BattleRequest() {
   const [contract, setContract] = useState(null);
 
   useEffect(() => {
+    
     // Initialize ethers and contract when wallet is connected
     async function initContract() {
       if (window.ethereum) {
-        const provider = new BrowserProvider(window.ethereum);
-        provider.getEnsAddress = async () => null;
-        provider.getResolver = async () => null;
-        provider.resolveName = async (name) => name;
-        const signer = await provider.getSigner();
-        const battleContract = new ethers.Contract(contractAddress, BattleGameABI, signer);
-        setContract(battleContract);
+        try {
+          // Request account access
+          await window.ethereum.request({ method: "eth_requestAccounts" });
+          
+          // Initialize provider
+          const provider = new BrowserProvider(window.ethereum);
+          // Override ENS methods if needed
+          provider.getEnsAddress = async () => null;
+          provider.getResolver = async () => null;
+          provider.resolveName = async (name) => name;
+          
+          // Get signer
+          const signer = await provider.getSigner();
+          const battleContract = new ethers.Contract(contractAddress, BattleGameABI, signer);
+          // Proceed with your logic (e.g., setting state, calling functions)
+          console.log("Wallet connected:", await signer.getAddress());
+        } catch (error) {
+          if (error.code === -32002) {
+            alert("A wallet connection request is already pending. Please check your MetaMask window.");
+          } else if (error.code === 4001) {
+            alert("Connection request was rejected. Please try again.");
+          } else {
+            console.error("Error connecting wallet:", error);
+          }
+        }
+      } else {
+        alert("MetaMask is not installed. Please install MetaMask.");
       }
     }
     initContract();
