@@ -32,7 +32,7 @@ function Chat() {
   };
 
   return (
-    <div>
+    <div style={{ padding: "1rem", textAlign: "center" }}>
       <h2>Chat Room</h2>
       <ul>
         {chat.map((msg, index) => (

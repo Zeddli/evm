@@ -7,6 +7,7 @@ import Chat from "./Chat";
 import BattleRequest from "./BattleRequest";
 import GameModeVoting from "./GameModeVoting";
 import Inventory from "./Inventory";
+import TaskDashboard from "./TaskDashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Chat />
         <GameModeVoting />
         <Inventory />
+        <TaskDashboard />
       </header>
     </div>
   );

@@ -89,7 +89,7 @@ function BattleRequest() {
   };
 
   return (
-    <div>
+    <div style={{ padding: "1rem", textAlign: "center" }}>
       <h2>Battle Requests</h2>
       <ul>
         {battleRequests.map((req, index) => (

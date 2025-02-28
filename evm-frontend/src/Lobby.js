@@ -40,7 +40,7 @@ function Lobby() {
   playersArray.sort((a, b) => b.score - a.score);
 
   return (
-    <div className="lobby-container" style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+    <div className="lobby-container" style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
       <h2>Lobby & Leaderboard</h2>
       <ul style={{ listStyle: 'none', padding: 0 }}>
         {playersArray.map((player) => (
