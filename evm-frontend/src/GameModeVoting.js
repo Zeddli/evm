@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
 // Connect to your backend server (update URL if needed)
-const socket = io("http://localhost:3001");
+const socket = io("http://localhost:3000");
 
 // Define available game modes
 const gameModes = ["Deathmatch", "Team Battle", "Survival", "Capture the Flag"];
