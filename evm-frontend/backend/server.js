@@ -55,7 +55,24 @@ io.on('connection', (socket) => {
     delete players[socket.id];
     io.emit('lobby update', players);
   });
+
+  // server.js (inside io.on('connection', ...))
+let votes = {};
+
+socket.on("submit vote", (data) => {
+  const mode = data.mode;
+  // Initialize vote count if not set
+  if (!votes[mode]) {
+    votes[mode] = 0;
+  }
+  votes[mode] += 1;
+  // Broadcast the updated vote counts to all connected clients
+  io.emit("vote update", votes);
 });
+
+});
+
+
 
 const PORT = process.env.PORT || 3000; // use a port different from React if needed
 server.listen(PORT, () => {

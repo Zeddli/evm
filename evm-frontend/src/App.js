@@ -1,14 +1,22 @@
 // src/App.js
-import React from 'react';
-import WalletConnect from './WalletConnect';
-// Import additional components later (e.g., Lobby, Battle, Chat, etc.)
+import React from "react";
+import WalletConnect from "./WalletConnect";
+import Lobby from "./Lobby";
+import BattleArena from "./BattleArena";
+import Chat from "./Chat";
+import BattleRequest from "./BattleRequest";
+import GameModeVoting from "./GameModeVoting";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <WalletConnect />
-        {/* Future components: <Lobby />, <BattleArena />, <Chat /> */}
+        <Lobby />
+        <BattleArena />
+        <BattleRequest />
+        <Chat />
+        <GameModeVoting />
       </header>
     </div>
   );
