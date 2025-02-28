@@ -8,6 +8,7 @@ import BattleRequest from "./BattleRequest";
 import GameModeVoting from "./GameModeVoting";
 import Inventory from "./Inventory";
 import TaskDashboard from "./TaskDashboard";
+import SocialFeed from "./SocialFeed";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <GameModeVoting />
         <Inventory />
         <TaskDashboard />
+        <SocialFeed/>
       </header>
     </div>
   );
