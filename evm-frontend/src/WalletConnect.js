@@ -17,6 +17,9 @@ function WalletConnect() {
         provider.resolveName = async (name) => name;
   
         const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        setAccount(address);
+  
         // Proceed with your initialization logic (e.g., setting state)
         console.log("Wallet connected:", await signer.getAddress());
       } catch (error) {
@@ -24,7 +27,11 @@ function WalletConnect() {
         if (error.code === 4001) {
           // User rejected the connection
           alert("Connection request was rejected. Please try again if you wish to connect your wallet.");
-        } else {
+        } else if (error.code === -32002) {
+          
+          alert("A connection request is already pending. Please check your MetaMask window.");
+        } 
+        else {
           console.error("Error connecting wallet:", error);
         }
       }
@@ -33,10 +40,20 @@ function WalletConnect() {
     }
   }
 
+
   return (
-    <div>
-      <button onClick={connectWallet}>Connect Wallet</button>
-      {account && <p>Connected: {account}</p>}
+    <div className="wallet-connect" style={{ padding: '1rem', textAlign: 'center' }}>
+      {!account ? (
+        <>
+          <h2>Welcome to SocialFi Arena</h2>
+          <p>Connect your wallet to start battling and earning NFT rewards!</p>
+          <button onClick={connectWallet} style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>
+            Connect Wallet
+          </button>
+        </>
+      ) : (
+        <p>Connected: {account}</p>
+      )}
     </div>
   );
 }

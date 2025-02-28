@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.wallet-connect {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (max-width: 600px) {
+  .wallet-connect {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
