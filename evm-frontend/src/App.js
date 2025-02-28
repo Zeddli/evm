@@ -6,6 +6,7 @@ import BattleArena from "./BattleArena";
 import Chat from "./Chat";
 import BattleRequest from "./BattleRequest";
 import GameModeVoting from "./GameModeVoting";
+import Inventory from "./Inventory";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <BattleRequest />
         <Chat />
         <GameModeVoting />
+        <Inventory />
       </header>
     </div>
   );
